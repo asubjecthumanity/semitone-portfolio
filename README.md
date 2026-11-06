@@ -5,8 +5,6 @@
 Semitone is an iPhone app that listens to music and writes out the notes and chords as it hears
 them.
 
-**Demo video:** [DEMO VIDEO LINK]
-
 ## Why I built it
 
 I learn songs by ear, and it's slow: I play a passage back again and again, hunting for each note.
