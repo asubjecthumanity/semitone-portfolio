@@ -35,7 +35,27 @@ flowchart LR
 Everything runs on the phone, and the audio never leaves it. An optional AI cleanup sends only the
 detected notes, as text.
 
-## What I built
+## How I built it: me and Claude
+
+I built Semitone with Claude, Anthropic's AI, through Claude Code. To be clear about who did what:
+
+- **Claude wrote nearly all of the code.** That includes the iPhone app, the rebuilt piano model, the
+  scoring tools and most of the documentation. 238 of this project's 243 commits were co-written with
+  Claude.
+- **Claude proposed most of the technical approaches** below and ran the tuning experiments.
+- **I decided what Semitone should be and do.** I chose what it shows and how it should look and
+  feel, usually by picking between design options Claude mocked up.
+- **I tested it and drove the work.** I tested it on my own iPhone, reported what was wrong, and
+  decided which experiments to run and which results to keep.
+- **I made the MIDI/audio test pairs in Ableton.** They're the answer keys the app is scored against.
+- **My partner Joss** ([@johenaught](https://github.com/johenaught)) contributed bug fixes and the
+  PianoBench evaluator, also written with an AI assistant (OpenAI's Codex).
+
+I don't yet understand every line of this codebase, and I'm not going to pretend I do.
+[Where it's stuck, and what I'm learning](#where-its-stuck-and-what-im-learning) explains why that
+now matters.
+
+## What it does, and the decisions behind it
 
 ### The idea and the product
 
@@ -51,6 +71,9 @@ Semitone is designed around one moment: you hear something and want to play it.
 - **Chords two ways.** Chords can be shown as played, or simplified to plain shapes you can play.
 
 ### Architecture decisions, and why
+
+Claude proposed and built most of these. Each one stayed because it held up on my test pairs and on
+my phone.
 
 - **Two passes.** Basic Pitch (Spotify) is small enough to run live, so you see notes while you play.
   Transkun v2 (Yujia Yan) is much more accurate but too heavy for real time, so it runs once you stop.
@@ -86,23 +109,44 @@ it. Because I know which notes are really in the audio, I can score the app's ou
   model looked about 45% accurate, which hid the real differences. The numbers only meant something
   once the MIDI was lined up with the audio, bar by bar.
 
-For full songs, I also scored the app on ten commercial recordings. Their answer keys are fan-made
-MIDI files, lined up with each recording automatically (`Tools/RealBench/bitmidi`). Over three rounds
-of tuning, Song mode's overall score on them rose from 51.8 to 75.1 out of 100; beat accuracy reached
-0.92 and chords 0.74. The recordings aren't included because they're copyrighted.
+For full songs, the app is also scored on ten commercial recordings I chose. Their answer keys are
+fan-made MIDI files, lined up with each recording automatically (`Tools/RealBench/bitmidi`). Claude
+ran three overnight rounds of tuning against them. Song mode's overall score rose from 51.8 to 75.1
+out of 100, with beat accuracy reaching 0.92 and chords 0.74. The recordings aren't included because
+they're copyrighted.
 
-### What I'm learning now
+## Where it's stuck, and what I'm learning
 
-- **Python and JavaScript**, by reading and changing the tools in this repo.
-- **Fine-tuning.** I tried further training Transkun on public datasets so it would handle more
-  instruments. On my ten real songs it did worse than the original model (0.25–0.28, against 0.31).
-  I'm working out why before training more.
+Semitone has hit a wall, and AI-written code alone won't get it past.
+
+**The app is only as good as models other people trained.** Transkun is excellent on solo piano
+because it was trained on piano. On a full band, Semitone still uses a piano model and patches the
+gaps with hand-made rules.
+
+**The obvious next step failed.** That step is to train the model further on more instruments. Claude
+set up two training runs on public datasets of real and synthesized recordings. On my ten
+real songs, both did worse than the model they started from (0.25 and 0.28, against 0.31). I
+couldn't tell why, and neither could more tuning. The training data, the training method or the way
+it was scored could each be the cause, and judging that takes understanding I don't have yet.
+
+That's the point where directing an AI stops being enough. To get Semitone past piano, I need to
+understand it myself:
+
+- **Programming:** Python first (the language the models are trained in), then reading the app's
+  Swift for real.
+- **Machine learning:** how models learn from data, why training can make a model worse, and how to
+  build a training set that teaches what I need.
+- **Audio and signal processing:** what a recording actually holds, and why a held synth chord fools
+  a note detector.
+- **Music theory and production:** I already use these to build test pairs in Ableton. They're also
+  how I'll judge whether a transcription is musically right, not just numerically close.
+
+Those are what I want to study in Computer Science + Music.
 
 ## Tools
 
-The code was written with the help of AI coding assistants. I designed the app and its architecture,
-made the test pairs, and am now learning the codebase in depth.
-
+- Claude (Anthropic), through Claude Code: wrote nearly all of the code; see
+  [How I built it](#how-i-built-it-me-and-claude)
 - Swift and SwiftUI (iOS 26), Core ML and Accelerate
 - Python for the benchmark and model-conversion tools
 - Ableton Live for the test pairs
