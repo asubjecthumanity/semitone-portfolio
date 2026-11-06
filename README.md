@@ -71,6 +71,31 @@ Semitone is designed around one moment: you hear something and want to play it.
   you can tell the lines apart. Any part can be hidden or muted.
 - **Chords two ways.** Chords can be shown as played, or simplified to plain shapes you can play.
 
+### Built on two open-source models
+
+Semitone's note detection starts from two models that other people trained:
+
+- **Basic Pitch**, by Spotify: fast enough to run live while you record.
+- **Transkun**, by Yujia Yan: a highly accurate piano model.
+
+We used them as the foundation and built on top of them to get better results than either gives on
+its own:
+
+- **Transkun runs on the phone.** It was a research model that needs a computer. We rebuilt it in
+  Swift and Apple's Core ML so it runs on the iPhone. We also added playback of the sustain pedal
+  and how hard each note was played, both of which it detects.
+- **The two models check each other.** The app compares their notes and picks the more trustworthy
+  version. It drops notes that can't be heard starting in the audio, and moves late bass notes to
+  where they really begin.
+- **Musical structure the models don't give.** The models only output notes. Semitone adds the beat
+  and bars, chord names, the melody, chords and bass as separate parts, simplified chords you can
+  play, and MIDI export.
+
+Together these raised Song mode's score on ten real songs from 51.8 to 75.1 out of 100. The models
+themselves were not retrained: our attempt to do that made them worse (see
+[Where it's stuck](#where-its-stuck-and-what-im-learning)). The improvements are in what Semitone
+does with their output.
+
 ### Architecture decisions, and why
 
 I proposed most of these and Claude built them. Each one stayed because it held up on my test pairs
@@ -154,8 +179,8 @@ Those are what I want to study in Computer Science + Music.
 
 **Credits**
 
-- [Basic Pitch](https://github.com/spotify/basic-pitch) by Spotify (Apache 2.0)
-- [Transkun](https://github.com/Yujia-Yan/Transkun) by Yujia Yan (MIT)
+- [Basic Pitch](https://github.com/spotify/basic-pitch) by Spotify (Apache 2.0): the live note detector, converted to Core ML
+- [Transkun](https://github.com/Yujia-Yan/Transkun) by Yujia Yan (MIT): the piano model, rebuilt in Swift and Core ML
 - YDP Grand Piano by FreePats (CC BY 3.0)
 - Joss ([@johenaught](https://github.com/johenaught)) contributed bug fixes and the PianoBench
   evaluator (`Tools/PianoBench`)
