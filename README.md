@@ -42,8 +42,7 @@ detected notes, as text.
 I'm Freeman Miller. I built Semitone with Claude, Anthropic's AI, through Claude Code. To be clear about who did what:
 
 - **Claude wrote nearly all of the code.** That includes the iPhone app, the rebuilt piano model, the
-  scoring tools and most of the documentation. 238 of this project's 243 commits
-  (original repo; this is a clean copy) were co-written with Claude.
+  scoring tools and most of the documentation.
 - **I proposed most of the technical approaches** below. Claude built them and ran the tuning
   experiments.
 - **I decided what Semitone should be and do.** I chose what it shows and how it should look and
@@ -54,9 +53,8 @@ I'm Freeman Miller. I built Semitone with Claude, Anthropic's AI, through Claude
 - **My partner Joss** ([@johenaught](https://github.com/johenaught)) contributed bug fixes and the
   PianoBench evaluator, also written with an AI assistant (OpenAI's Codex).
 
-I don't yet understand every line of this codebase, and I'm not going to pretend I do.
-[Where it's stuck, and what I'm learning](#where-its-stuck-and-what-im-learning) explains why that
-now matters.
+I'm now working through the codebase line by line;
+[Where it's stuck, and what I'm learning](#where-its-stuck-and-what-im-learning) explains why.
 
 ## What it does, and the decisions behind it
 
