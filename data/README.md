@@ -1,5 +1,7 @@
 # Matched MIDI/audio pairs
 
+Made by Freeman Miller.
+
 Each pair is a recording plus a MIDI file of the notes in it, made in Ableton Live: the MIDI is the
 answer key for the recording. Semitone listens to the audio, and its notes are scored against the
 MIDI. The pairs measure how accurate the transcription is, and that is how its models and settings

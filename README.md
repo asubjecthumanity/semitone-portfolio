@@ -1,5 +1,7 @@
 # Semitone
 
+**By Freeman Miller**, for my Computer Science + Music portfolio.
+
 Semitone is an iPhone app that listens to music and writes out the notes and chords as it hears
 them.
 
@@ -37,11 +39,11 @@ detected notes, as text.
 
 ## How I built it: me and Claude
 
-I built Semitone with Claude, Anthropic's AI, through Claude Code. To be clear about who did what:
+I'm Freeman Miller. I built Semitone with Claude, Anthropic's AI, through Claude Code. To be clear about who did what:
 
 - **Claude wrote nearly all of the code.** That includes the iPhone app, the rebuilt piano model, the
-  scoring tools and most of the documentation. 238 of this project's 243 commits were co-written with
-  Claude.
+  scoring tools and most of the documentation. 238 of this project's 243 commits
+  (original repo; this is a clean copy) were co-written with Claude.
 - **I proposed most of the technical approaches** below. Claude built them and ran the tuning
   experiments.
 - **I decided what Semitone should be and do.** I chose what it shows and how it should look and
