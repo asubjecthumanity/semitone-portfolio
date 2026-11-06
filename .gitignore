@@ -1,0 +1,27 @@
+# Mac Finder clutter
+.DS_Store
+
+# Per-user Xcode settings (a local scheme can hold the AI key; never commit it)
+xcuserdata/
+*.xcuserstate
+
+# Build output
+build/
+DerivedData/
+.build/
+artifacts/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv*/
+
+# Large generated files, rebuilt from Tools/ (see README "Running it locally")
+Semitone/TranskunBackbone.mlpackage/
+Semitone/GrandPiano.sf2
+
+# Recordings and answer keys that stay local (large, or copyrighted)
+bench/
+data/clip3/AUDIOTEST3.wav
+*.mp3

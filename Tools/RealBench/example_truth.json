@@ -1,0 +1,31 @@
+{
+  "format": "realbench-truth-1",
+  "name": "example",
+  "source": "where the key came from, and any quirks fixed while converting it",
+  "notesComplete": true,
+  "offsetsReliable": true,
+  "notes": [
+    {"on": 0.512, "off": 0.980, "pitch": 76, "velocity": 90, "part": "melody", "instrument": "Trumpet"},
+    {"on": 0.500, "off": 1.950, "pitch": 60, "velocity": 70, "part": "chords", "instrument": "Piano"},
+    {"on": 0.500, "off": 1.950, "pitch": 64, "velocity": 70, "part": "chords", "instrument": "Piano"},
+    {"on": 0.500, "off": 1.950, "pitch": 67, "velocity": 70, "part": "chords", "instrument": "Piano"},
+    {"on": 0.498, "off": 0.950, "pitch": 36, "velocity": 100, "part": "bass", "instrument": "Electric Bass"},
+    {"on": 1.010, "off": 1.400, "pitch": 55, "part": "alto", "instrument": "Alto voice"}
+  ],
+  "drums": [
+    {"time": 0.500, "class": "kick"},
+    {"time": 1.000, "class": "snare", "velocity": 96},
+    {"time": 0.750, "gmNote": 42},
+    {"time": 1.500, "gmNote": 49}
+  ],
+  "beats": [0.5, 1.0, 1.5, 2.0],
+  "downbeats": [0.5],
+  "beatsPerBar": 4,
+  "chords": [
+    {"start": 0.5, "end": 2.5, "label": "C:maj"},
+    {"start": 2.5, "end": 4.5, "label": "Am7"},
+    {"start": 4.5, "end": 6.5, "root": 7, "quality": "7"},
+    {"start": 6.5, "end": 8.0, "label": "N"}
+  ],
+  "ignore": [[110.0, 130.0]]
+}
