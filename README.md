@@ -42,7 +42,8 @@ I built Semitone with Claude, Anthropic's AI, through Claude Code. To be clear a
 - **Claude wrote nearly all of the code.** That includes the iPhone app, the rebuilt piano model, the
   scoring tools and most of the documentation. 238 of this project's 243 commits were co-written with
   Claude.
-- **Claude proposed most of the technical approaches** below and ran the tuning experiments.
+- **I proposed most of the technical approaches** below. Claude built them and ran the tuning
+  experiments.
 - **I decided what Semitone should be and do.** I chose what it shows and how it should look and
   feel, usually by picking between design options Claude mocked up.
 - **I tested it and drove the work.** I tested it on my own iPhone, reported what was wrong, and
@@ -72,8 +73,8 @@ Semitone is designed around one moment: you hear something and want to play it.
 
 ### Architecture decisions, and why
 
-Claude proposed and built most of these. Each one stayed because it held up on my test pairs and on
-my phone.
+I proposed most of these and Claude built them. Each one stayed because it held up on my test pairs
+and on my phone.
 
 - **Two passes.** Basic Pitch (Spotify) is small enough to run live, so you see notes while you play.
   Transkun v2 (Yujia Yan) is much more accurate but too heavy for real time, so it runs once you stop.
